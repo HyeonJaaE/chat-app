@@ -22,17 +22,22 @@ const Lobby = () => {
         history.push("/room/" + roomid);
     };
 
+    const enterRoom = (e) => {
+        e.preventDefault();
+        history.push("/room/" + e.target.value);
+    };
+
     return (
         <div className="main-div">
             {auth.username === "" && <Authmodal />}
             <section>
                 <h1>Hello, {auth.username}</h1>
                 <div className="room-list">
-                    {rooms.map((room) => (
+                    {rooms.map((roomId) => (
                         <div>
-                            <a key={room} href={"http://localhost:3000/room/" + room}>
-                                {room}
-                            </a>
+                            <button key={roomId} value={roomId} onClick={(e) => enterRoom(e)}>
+                                {roomId}
+                            </button>
                         </div>
                     ))}
                 </div>
